@@ -90,15 +90,13 @@ export default function Header({ setSearchTerm, productsList = [] }) {
 
       {/* Título centralizado */}
       <div className="flex-1 text-center">
-        <h1 className="text-white text-2xl font-bold">
-          Anime Shop
-        </h1>
+        <h1 className="text-white text-2xl font-bold">Anime Shop</h1>
       </div>
 
       {/* Área da busca + login */}
       <div className="flex items-center gap-3 relative flex-shrink-0">
         {/* Área de busca separada */}
-        <div 
+        <div
           className="relative flex items-center"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -125,10 +123,12 @@ export default function Header({ setSearchTerm, productsList = [] }) {
               }}
               placeholder="Buscar produtos..."
               className={`px-4 py-2 bg-white text-black border-none outline-none transition-all duration-300 ease-in-out ${
-                isSearchOpen ? "w-64 opacity-100 rounded-l-full" : "w-0 opacity-0"
+                isSearchOpen
+                  ? "w-64 opacity-100 rounded-l-full"
+                  : "w-0 opacity-0"
               }`}
               style={{
-                minWidth: isSearchOpen ? "256px" : "0px"
+                minWidth: isSearchOpen ? "256px" : "0px",
               }}
             />
             <button
@@ -170,7 +170,7 @@ export default function Header({ setSearchTerm, productsList = [] }) {
 
           {showDropdown && (
             <div
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 z-40 bg-transparent"
               onClick={() => setShowDropdown(false)}
             />
           )}
@@ -188,7 +188,6 @@ export default function Header({ setSearchTerm, productsList = [] }) {
             className="w-full h-full object-cover"
           />
         </button>
-        
       </div>
     </header>
   );
