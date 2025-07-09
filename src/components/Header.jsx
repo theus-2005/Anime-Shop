@@ -18,7 +18,7 @@ function formatPrice(price) {
   return `R$ ${price.toFixed(2)}`;
 }
 
-export default function Header({ setSearchTerm, productsList }) {
+export default function Header({ setSearchTerm, productsList = [] }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -34,7 +34,7 @@ export default function Header({ setSearchTerm, productsList }) {
   };
 
   const suggestions =
-    searchText.length >= 2
+    searchText.length >= 2 && productsList.length > 0
       ? productsList
           .filter((produto) =>
             produto.name.toLowerCase().includes(searchText.toLowerCase())
