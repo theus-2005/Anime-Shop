@@ -10,7 +10,8 @@ export default function ProductsPage() {
   const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
-    fetch("/Anime-Shop/db.json")
+    // Corrigido: caminho relativo para funcionar com GitHub Pages
+    fetch("./db.json")
       .then((res) => res.json())
       .then((data) => {
         const foundProduct = data.produtos.find((p) => p.id === parseInt(id));
@@ -24,7 +25,8 @@ export default function ProductsPage() {
   }, [id]);
 
   useEffect(() => {
-    fetch("/Anime-Shop/db.json")
+    // Corrigido: caminho relativo para funcionar com GitHub Pages
+    fetch("./db.json")
       .then((res) => res.json())
       .then((data) => {
         setRelatedProducts(data.produtos.filter((p) => p.id !== parseInt(id)).slice(0, 4));

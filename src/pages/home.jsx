@@ -5,7 +5,8 @@ export default function Home({ searchTerm }) {
   const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
-    fetch("/Anime-Shop/db.json")
+    // Corrigido: caminho relativo para funcionar com GitHub Pages
+    fetch("./db.json")
       .then((res) => res.json())
       .then((data) => setProductsList(data.produtos))
       .catch((error) => {
