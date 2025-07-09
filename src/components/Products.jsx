@@ -1,4 +1,5 @@
 export default function Products({ product }) {
+import { Link } from "react-router-dom";
   // Função para formatar preços grandes
   function formatPrice(price) {
     if (price >= 1e30) return `R$ ${(price / 1e30).toFixed(1)}N`;
@@ -21,9 +22,9 @@ export default function Products({ product }) {
   })}`;
 
   return (
-    <a
+    <Link
       className="block w-[23%] bg-neutral-900 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow text-decoration-none"
-      href={`/produto/${product.id}`}
+      to={`/produto/${product.id}`}
     >
       <div className="aspect-square bg-neutral-800 rounded-md mb-3 flex items-center justify-center">
         <img
@@ -41,6 +42,6 @@ export default function Products({ product }) {
       >
         {formattedPrice}
       </p>
-    </a>
+    </Link>
   );
 }
