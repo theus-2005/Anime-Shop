@@ -1,5 +1,6 @@
-export default function Products({ product }) {
 import { Link } from "react-router-dom";
+
+export default function Products({ product }) {
   // Função para formatar preços grandes
   function formatPrice(price) {
     if (price >= 1e30) return `R$ ${(price / 1e30).toFixed(1)}N`;
