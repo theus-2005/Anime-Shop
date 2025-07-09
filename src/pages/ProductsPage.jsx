@@ -10,23 +10,26 @@ export default function ProductsPage() {
   const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3001/produtos?id=${id}`)
+    fetch("/db.json")
       .then((res) => res.json())
       .then((data) => {
-        if (!data.length) {
+        const foundProduct = data.produtos.find((p) => p.id === parseInt(id));
+        if (!foundProduct) {
           setError(true);
           return;
         }
-        setProduct(data[0]);
+        setProduct(foundProduct);
       })
       .catch(() => setError(true));
   }, [id]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/produtos")
+    fetch("/db.json")
       .then((res) => res.json())
       .then((data) => {
-        setRelatedProducts(data.filter((p) => p.id !== parseInt(id)).slice(0, 4));
+        setRelatedProducts(
+          data.produtos.filter((p) => p.id !== parseInt(id)).slice(0, 4)
+        );
       });
   }, [id]);
 
@@ -115,16 +118,16 @@ export default function ProductsPage() {
           </button>
         </div>
       </div>
-      
+
       {/* Produtos relacionados */}
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Produtos parecidos</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {relatedProducts.map((p) => (
-            <a
+            <Link
               key={p.id}
-              className="bg-neutral-900 p-4 rounded-lg hover:shadow-lg transition"
-              href={`/produto/${p.id}`}
+              to={`/produto/${p.id}`}
+              className="bg-neutral-900 p-4 rounded-lg hover:shadow-lg transition block"
             >
               <img
                 src={p.image}
@@ -133,7 +136,7 @@ export default function ProductsPage() {
               />
               <h3 className="text-lg font-bold text-white">{p.name}</h3>
               <p className="text-green-400">{formatPrice(p.price)}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

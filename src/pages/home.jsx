@@ -5,9 +5,12 @@ export default function Home({ searchTerm }) {
   const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/produtos")
+    fetch("/db.json")
       .then((res) => res.json())
-      .then((data) => setProductsList(data));
+      .then((data) => setProductsList(data.produtos))
+      .catch((error) => {
+        console.error("Erro ao carregar produtos:", error);
+      });
   }, []);
 
   const produtosParaMostrar = searchTerm
