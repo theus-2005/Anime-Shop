@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function ProductsPage() {
@@ -10,7 +10,7 @@ export default function ProductsPage() {
   const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
-    fetch("/db.json")
+    fetch("/Anime-Shop/db.json")
       .then((res) => res.json())
       .then((data) => {
         const foundProduct = data.produtos.find((p) => p.id === parseInt(id));
@@ -24,12 +24,10 @@ export default function ProductsPage() {
   }, [id]);
 
   useEffect(() => {
-    fetch("/db.json")
+    fetch("/Anime-Shop/db.json")
       .then((res) => res.json())
       .then((data) => {
-        setRelatedProducts(
-          data.produtos.filter((p) => p.id !== parseInt(id)).slice(0, 4)
-        );
+        setRelatedProducts(data.produtos.filter((p) => p.id !== parseInt(id)).slice(0, 4));
       });
   }, [id]);
 
@@ -118,7 +116,7 @@ export default function ProductsPage() {
           </button>
         </div>
       </div>
-
+      
       {/* Produtos relacionados */}
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Produtos parecidos</h2>

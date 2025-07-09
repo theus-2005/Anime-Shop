@@ -5,7 +5,7 @@ export default function Home({ searchTerm }) {
   const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
-    fetch("/db.json")
+    fetch("/Anime-Shop/db.json")
       .then((res) => res.json())
       .then((data) => setProductsList(data.produtos))
       .catch((error) => {
