@@ -9,7 +9,7 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <Router basename="/Anime-Shop">
+    <Router>  {/* Remover o basename daqui */}
       <div className="min-h-screen">
         <Header setSearchTerm={setSearchTerm} />
         <Routes>
